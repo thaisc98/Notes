@@ -26,6 +26,7 @@
         android:clickable="true"
         android:focusable="true"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:onClick="onNuevaNota"/>
 
 </RelativeLayout>
