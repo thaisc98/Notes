@@ -46,24 +46,11 @@ public class NotesActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         switch(requestCode) {
             case NUEVA_NOTA:
-                if(resultCode == RESULT_OK){
-                    String titulo = data.getStringExtra("titulo");
-                    String texto = data.getStringExtra("texto");
-                    ListNote.nueva(titulo,texto);
-                    Adapter.notifyDataSetChanged();
-                }
-                break;
-
             case EDIT_NOTA:
                 if(resultCode == RESULT_OK){
-                    String titulo =  data.getStringExtra("titulo");
-                    String texto = data.getStringExtra("texto");
-                    int position = data.getIntExtra("position",-1);
-                    ListNote.modify(position,titulo,texto);
                     Adapter.notifyDataSetChanged();
                 }
                 break;
-
                 default:
                     super.onActivityResult(requestCode, resultCode, data);
         }
@@ -72,10 +59,7 @@ public class NotesActivity extends AppCompatActivity {
     }
 
     private void onEditNote(int position) {
-        Nota nota = ListNote.getNote(position);
         Intent intent = new Intent(this, EditNoteActivity.class);
-        intent.putExtra("titulo",nota.getTitulo());
-        intent.putExtra("texto",nota.getTexto());
         intent.putExtra("position",position);
         startActivityForResult(intent,EDIT_NOTA);
     }
