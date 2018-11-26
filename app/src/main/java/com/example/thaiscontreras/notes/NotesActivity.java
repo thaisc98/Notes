@@ -111,7 +111,7 @@ public class NotesActivity extends AppCompatActivity {
             TextView titulo = (TextView) result.findViewById(R.id.titulo);
             titulo.setText(nota.getTitulo());
             TextView resumen = (TextView) result.findViewById(R.id.resumen);
-            resumen.setText(nota.getTexto());
+            resumen.setText(nota.getTexto().replace("\n", " "));
 
             return result;
         }
