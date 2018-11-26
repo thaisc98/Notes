@@ -1,5 +1,7 @@
 package com.example.thaiscontreras.notes;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 public class ListNote {
@@ -7,11 +9,9 @@ public class ListNote {
     private static ArrayList<Nota> notas;
 
 
-    public static ArrayList<Nota> get() {
+    public static ArrayList<Nota> get(Context context) {
         if(notas == null) {
-            notas = new ArrayList<>();
-            notas.add(new Nota("Hola", "klkio"));
-            notas.add(new Nota("jeje", "sdadsa"));
+            notas = NotesDB.loadNotes(context);
         }
         return notas;
     }
