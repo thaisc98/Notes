@@ -3,4 +3,8 @@
     <string name="escribeT">Titulo</string>
     <string name="escribeR">Escribe una nota…</string>
     <string name="guarda">Guardar</string>
+    <string name="confirm">Confirmacion</string>
+    <string name="aviso">Esta seguro que desea perder los datos?</string>
+    <string name="aceptar">Salir</string>
+    <string name="continuar">Seguir en la nota</string>
 </resources>

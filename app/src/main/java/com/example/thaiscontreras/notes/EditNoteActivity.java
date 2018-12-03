@@ -1,6 +1,8 @@
 package com.example.thaiscontreras.notes;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 
 public class EditNoteActivity extends AppCompatActivity {
 
+    private Nota original;
     private int position = -1;
     private EditText editTitulo;
     private EditText editText;
@@ -25,11 +28,24 @@ public class EditNoteActivity extends AppCompatActivity {
         Intent intent = getIntent();
         position = intent.getIntExtra("position",-1);
         if(position != -1){
-            Nota nota = ListNote.getNote(position);
-            editTitulo.setText(nota.getTitulo());
-            editText.setText(nota.getTexto());
+            original = ListNote.getNote(position);
+            editTitulo.setText(original.getTitulo());
+            editText.setText(original.getTexto());
+
+        }else{
+
+            original = new Nota();
         }
     }
+
+    private boolean Cambios(){
+
+        String titulo = editTitulo.getText().toString();
+        String texto = editText.getText().toString();
+        return !original.getTitulo().equals(titulo) || !original.getTexto().equals(texto);
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,6 +73,31 @@ public class EditNoteActivity extends AppCompatActivity {
            default:
                return super.onOptionsItemSelected(item);
        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if(Cambios()){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.confirm);
+            builder.setMessage(R.string.aviso);
+            builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    EditNoteActivity.super.onBackPressed();
+                }
+            });
+            builder.setNegativeButton(R.string.continuar,null);
+            builder.create().show();
+
+        }else{
+
+            super.onBackPressed();
+        }
+
 
     }
 }
