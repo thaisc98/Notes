@@ -16,6 +16,10 @@ public class ListNote {
         return notas;
     }
 
+    public static Nota getNote(int position){
+        return notas.get(position);
+    }
+
     public static void nueva(String titulo, String texto) {
         Nota nota = NotesDB.nueva(titulo,texto);
         notas.add(nota);
@@ -29,7 +33,13 @@ public class ListNote {
 
     }
 
-    public static Nota getNote(int position){
-        return notas.get(position);
+
+
+    public static void borrar(int position) {
+
+        Nota nota = notas.get(position);
+        NotesDB.borrar(nota);
+        notas.remove(position);
+
     }
 }

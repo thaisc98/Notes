@@ -102,6 +102,7 @@ public class NotesDB {
         values.put("Titulo", titulo);
         values.put("texto", texto);
         long id = db.insert("Notes", null, values);
+        db.close();
 
         resultado.setId(id);
         return resultado;
@@ -120,10 +121,19 @@ public class NotesDB {
         String [] args = {Long.toString(nota.getId())};
 
         db.update("Notes", values, where, args);
+        db.close();
 
+    }
 
+    public static void borrar (Nota nota){
 
+        SQLiteDatabase db = getHelper().getWritableDatabase();
 
+        String where = "id = ?";
+        String [] args = {Long.toString(nota.getId())};
+
+        db.delete("Notes", where, args);
+        db.close();
     }
 
 

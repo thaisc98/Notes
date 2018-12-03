@@ -70,6 +70,25 @@ public class EditNoteActivity extends AppCompatActivity {
                finish();
                 return true;
 
+           case R.id.borrar:
+
+
+               AlertDialog.Builder builder = new AlertDialog.Builder(this);
+               builder.setTitle(R.string.confirm);
+               builder.setMessage(R.string.confirmBorrar);
+               builder.setPositiveButton(R.string.executeBorrar, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       ListNote.borrar(position);
+                       setResult(RESULT_OK);
+                       finish();
+                   }
+               });
+               builder.setNegativeButton(android.R.string.cancel,null);
+               builder.create().show();
+               return true;
+
+
            default:
                return super.onOptionsItemSelected(item);
        }

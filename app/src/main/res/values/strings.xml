@@ -7,4 +7,8 @@
     <string name="aviso">Esta seguro que desea perder los datos?</string>
     <string name="aceptar">Salir</string>
     <string name="continuar">Seguir en la nota</string>
+    <string name="borrar">Borrar esta nota</string>
+    <string name="confirmBorrar">Desea borrar esta nota?</string>
+    <string name="executeBorrar">Borrar</string>
+    <string name="cancelarBorrar">No borrar</string>
 </resources>
