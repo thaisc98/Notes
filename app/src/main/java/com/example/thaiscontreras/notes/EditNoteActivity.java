@@ -26,8 +26,22 @@ public class EditNoteActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
 
         Intent intent = getIntent();
+        String action = intent.getAction();
         position = intent.getIntExtra("position",-1);
+
+        if(action != null && action.equals(Intent.ACTION_SEND)){
+
+            original = new Nota();
+            String titulo = intent.getStringExtra(Intent.EXTRA_SUBJECT);
+            String texto = intent.getStringExtra(Intent.EXTRA_TEXT);
+
+            editTitulo.setText(titulo);
+            editText.setText(texto);
+
+        }
+
         if(position != -1){
+
             original = ListNote.getNote(position);
             editTitulo.setText(original.getTitulo());
             editText.setText(original.getTexto());
@@ -103,6 +117,10 @@ public class EditNoteActivity extends AppCompatActivity {
                intent.putExtra(Intent.EXTRA_TEXT, texto);
                intent.setType("text/plain");
                startActivity(intent);
+               Intent chooser = Intent.createChooser(intent, getResources().getText(R.string.compartirCON));
+
+               startActivity(chooser);
+
 
                return true;
 

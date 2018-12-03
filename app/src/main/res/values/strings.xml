@@ -12,4 +12,5 @@
     <string name="executeBorrar">Borrar</string>
     <string name="cancelarBorrar">No borrar</string>
     <string name="compartirNota">Compartir Nota</string>
+    <string name="compartirCON">Compartir con...</string>
 </resources>
