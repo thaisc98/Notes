@@ -9,15 +9,15 @@ public class ListNote {
     private static ArrayList<Nota> notas;
 
 
-    public static ArrayList<Nota> get(Context context) {
+    public static ArrayList<Nota> get() {
         if(notas == null) {
-            notas = NotesDB.loadNotes(context);
+            notas = NotesDB.loadNotes();
         }
         return notas;
     }
 
     public static void nueva(String titulo, String texto) {
-        Nota nota = new Nota(titulo, texto);
+        Nota nota = NotesDB.nueva(titulo,texto);
         notas.add(nota);
     }
 
@@ -25,6 +25,8 @@ public class ListNote {
         Nota nota = notas.get(position);
         nota.setTitulo(titulo);
         nota.setTexto(texto);
+        NotesDB.actualiza(nota);
+
     }
 
     public static Nota getNote(int position){
