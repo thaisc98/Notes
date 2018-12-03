@@ -11,4 +11,5 @@
     <string name="confirmBorrar">Desea borrar esta nota?</string>
     <string name="executeBorrar">Borrar</string>
     <string name="cancelarBorrar">No borrar</string>
+    <string name="compartirNota">Compartir Nota</string>
 </resources>

@@ -56,10 +56,13 @@ public class EditNoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        String titulo,texto;
+
        switch(item.getItemId()){
            case R.id.guardar:
-               String titulo = editTitulo.getText().toString();
-               String texto = editText.getText().toString();
+                titulo = editTitulo.getText().toString();
+                texto = editText.getText().toString();
 
                if(position != -1){
                   ListNote.modify(position,titulo,texto);
@@ -88,6 +91,20 @@ public class EditNoteActivity extends AppCompatActivity {
                builder.create().show();
                return true;
 
+
+           case R.id.compartir:
+
+               titulo = editTitulo.getText().toString();
+               texto = editText.getText().toString();
+
+               Intent intent = new Intent();
+               intent.setAction(Intent.ACTION_SEND);
+               intent.putExtra(Intent.EXTRA_SUBJECT,titulo);
+               intent.putExtra(Intent.EXTRA_TEXT, texto);
+               intent.setType("text/plain");
+               startActivity(intent);
+
+               return true;
 
            default:
                return super.onOptionsItemSelected(item);
